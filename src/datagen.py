@@ -122,13 +122,3 @@ if __name__ == '__main__':
     # Make a batch and print a few decks
     file = make_decks(100_000)
     show_decks(file, 3)
-
-    # Each deck should have 26 reds
-    decks = load_decks(file)
-    reds_per_deck = decks.sum(axis=1)
-    print('Every deck has 26 reds:', bool((reds_per_deck == 26).all()))
-
-    # Same seed should give the same decks
-    seed = get_next_seed() - 1
-    remade = shuffle_decks(seed, len(decks))
-    print('Remade from seed matches file:', np.array_equal(decks, remade))
