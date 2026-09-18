@@ -120,5 +120,5 @@ def show_decks(filename: Path, n_decks: int = 5) -> None:
 
 if __name__ == '__main__':
     # Make a batch and print a few decks
-    file = make_decks(100_000)
+    file = make_decks(10)
     show_decks(file, 3)
