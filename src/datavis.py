@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from datagen import REPO_FOLDER
-from dataproc import TRICKS_DATA, CARDS_DATA
+from src.datagen import REPO_FOLDER
+from src.dataproc import TRICKS_DATA, CARDS_DATA
 
 FIGURES_FOLDER = REPO_FOLDER / 'figures'
 
@@ -111,6 +111,6 @@ def make_all_heatmaps() -> list[Path]:
     return [tricks_path, cards_path]
 
 
-if __name__ == '__main__':
-    for path in make_all_heatmaps():
-        print(f'Saved {path}')
+# if __name__ == '__main__':
+#     for path in make_all_heatmaps():
+#         print(f'Saved {path}')
