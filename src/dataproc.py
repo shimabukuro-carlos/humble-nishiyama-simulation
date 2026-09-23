@@ -3,7 +3,7 @@ import pandas as pd
 from itertools import permutations, product
 from pathlib import Path
 
-from datagen import BLACK, RED, DATA_FOLDER, DECKS_FOLDER, get_next_seed, load_decks
+from src.datagen import BLACK, RED, DATA_FOLDER, DECKS_FOLDER, get_next_seed, load_decks
 
 # file paths and columns
 PROC_FOLDER = DATA_FOLDER / 'processed'
