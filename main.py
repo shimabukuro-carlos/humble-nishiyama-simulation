@@ -1,9 +1,14 @@
-# from src.datagen import make_decks, get_next_seed
-# from src.dataproc import process_decks
-from src.datavis import make_all_heatmaps
+from src.datagen import make_decks, get_next_seed, DECKS_FOLDER
+from src.dataproc import process_decks
+from src.datavis import make_all_heatmaps, show_heatmaps
 
 def main():
-    # make_decks for first time, 1000000 decks
+    # make_decks for first time, 1000000 decks?
+    make_decks(10)
+    seed = get_next_seed() - 1
+    raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
+    process_decks(raw)
+    path_to_heatmaps = make_all_heatmaps()
 
     user_choice = 0
     while user_choice != '3':
@@ -13,16 +18,19 @@ def main():
         if user_choice == '1':
             print('Generating heatmaps...')
             # datavis
-            make_all_heatmaps()
+            #make_all_heatmaps()
+            show_heatmaps(path_to_heatmaps)
         elif user_choice == '2':
-            num_new_decks = input('Enter the number of decks to add to the simulation: ')
+            num_new_decks = int(input('Enter the number of decks to add to the simulation: '))
             # datagen:
-            # make_decks(num_new_decks)
+            make_decks(num_new_decks)
             # dataproc:
-            # seed = get_next_seed() - 1
-            # raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
-            # tricks_df, cards_df = process_decks(raw)
+            seed = get_next_seed() - 1
+            raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
+            process_decks(raw)
             #print updated number of decks generated 
+            # datavis - doesn't display the heatmaps, just makes them
+            make_all_heatmaps()
         elif user_choice == '3':
             # quit simulation
             break
