@@ -132,7 +132,7 @@ def merge_scores(existing_data: pd.DataFrame | None, new_data: pd.DataFrame) -> 
     return calculate_percents(merged_data)
 
     
-def process_decks(raw_data: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
+def process_decks(raw_data: Path) -> None:
     '''
     Loads the raw decks and converts them to strings.
     Plays the game for all 56 combinations and adds scores to existing data (if any).
@@ -160,12 +160,12 @@ def process_decks(raw_data: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     tricks_df.to_csv(TRICKS_DATA, index = False)
     cards_df.to_csv(CARDS_DATA, index = False)
 
-    return tricks_df, cards_df
+    #return tricks_df, cards_df
 
 
-if __name__ == '__main__':
-    seed = get_next_seed() - 1
-    raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
+# if __name__ == '__main__':
+#     seed = get_next_seed() - 1
+#     raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
 
-    tricks_df, cards_df = process_decks(raw)
+#     tricks_df, cards_df = process_decks(raw)
     
