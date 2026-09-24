@@ -110,6 +110,18 @@ def make_all_heatmaps() -> list[Path]:
     cards_path = make_heatmap(CARDS_DATA, 'Scored by Cards', 'heatmap_cards.png')
     return [tricks_path, cards_path]
 
+def show_heatmaps(paths: list[Path]) -> None:
+    '''
+    Displays the heatmaps without needing to regenerate them.
+    Uses the paths returned from make_all_heatmaps.
+    '''
+    plt.ioff()
+    for path in paths:
+        image = plt.imread(path)
+        fig, ax = plt.subplots()
+        ax.imshow(image)
+        ax.axis('off')
+    plt.show()
 
 # if __name__ == '__main__':
 #     for path in make_all_heatmaps():
