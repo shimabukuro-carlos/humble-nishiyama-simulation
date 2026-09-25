@@ -1,25 +1,28 @@
 from src.datagen import make_decks, get_next_seed, DECKS_FOLDER
 from src.dataproc import process_decks
 from src.datavis import make_all_heatmaps, show_heatmaps
+from pathlib import Path
 
 def main():
-    # make_decks for first time, 1000000 decks?
-    make_decks(10)
-    seed = get_next_seed() - 1
-    raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
-    process_decks(raw)
-    path_to_heatmaps = make_all_heatmaps()
+    '''
+    Operates the simulation using user input to see heatmaps, add decks, or quit the program.
+    '''
+
+    # file paths for where heatmaps should be
+    PATH = [Path(__file__).parent / 'figures' / 'heatmap_cards.png', Path(__file__).parent / 'figures' / 'heatmap_tricks.png']
 
     user_choice = 0
     while user_choice != '3':
-        # num_decks_generated = get_deck_count() --> make some sort of function to count decks
-        # print(f'There are currently {num_decks_generated} generated.')
         user_choice = input('Enter 1 to display heatmaps, 2 to add more decks to the simulation, or 3 to quit: ')
         if user_choice == '1':
-            print('Generating heatmaps...')
-            # datavis
-            #make_all_heatmaps()
-            show_heatmaps(path_to_heatmaps)
+            # if heatmaps already exist
+            if PATH[0].exists() and PATH[1].exists():
+                print('Generating heatmaps...')
+                # datavis:
+                show_heatmaps(PATH)
+            # if heatmaps don't exist, user needs to add decks first
+            else:
+                print('Add decks first before displaying heatmaps.')
         elif user_choice == '2':
             num_new_decks = int(input('Enter the number of decks to add to the simulation: '))
             # datagen:
@@ -28,7 +31,6 @@ def main():
             seed = get_next_seed() - 1
             raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
             process_decks(raw)
-            #print updated number of decks generated 
             # datavis - doesn't display the heatmaps, just makes them
             make_all_heatmaps()
         elif user_choice == '3':
