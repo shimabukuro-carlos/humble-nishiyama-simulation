@@ -21,7 +21,7 @@ def make_grid(scores: pd.DataFrame, column: str) -> pd.DataFrame:
     Rows are my choice (player 2), columns are the opponent's choice (player 1).
     The diagonal has no games, so it comes out as NaN.
     '''
-    grid = scores.pivot(index='p2_choice', columns='p1_choice', values=column)
+    grid = scores.pivot(index='p1_choice', columns='p2_choice', values=column)
     return grid.reindex(index=SEQ_ORDER, columns=SEQ_ORDER)
 
 
@@ -68,8 +68,8 @@ def draw_heatmap(win_grid: pd.DataFrame, labels: pd.DataFrame, title: str) -> pl
     ax.set_xticklabels(SEQ_ORDER)
     ax.set_yticks(range(len(SEQ_ORDER)))
     ax.set_yticklabels(SEQ_ORDER)
-    ax.set_xlabel('Opponent Choice')
-    ax.set_ylabel('My Choice')
+    ax.set_xlabel('My Choice')
+    ax.set_ylabel('Opponent Choice')
     ax.set_title(title)
 
     fig.tight_layout()
@@ -90,7 +90,7 @@ def make_heatmap(scores_file: Path, game_name: str, figure_name: str) -> Path:
 
     # Every combo is played on every deck, so any row has the total deck count
     n_decks = scores['n_decks'].iloc[0]
-    title = f'My Chance of Winning, {game_name}\n(Win % and Tie %, N = {n_decks:,} decks)'
+    title = f'My Chance of Winning, {game_name}\n(N = {n_decks:,} decks)'
 
     fig = draw_heatmap(win_grid, labels, title)
 
@@ -123,6 +123,3 @@ def show_heatmaps(paths: list[Path]) -> None:
         ax.axis('off')
     plt.show()
 
-# if __name__ == '__main__':
-#     for path in make_all_heatmaps():
-#         print(f'Saved {path}')
