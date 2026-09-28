@@ -163,9 +163,3 @@ def process_decks(raw_data: Path) -> None:
     #return tricks_df, cards_df
 
 
-# if __name__ == '__main__':
-#     seed = get_next_seed() - 1
-#     raw = DECKS_FOLDER / f'decks_seed_{seed}.npy'
-
-#     tricks_df, cards_df = process_decks(raw)
-    
