@@ -28,7 +28,7 @@ Every batch of decks is generated from a recorded random seed, so any result can
 
 ## Findings
 
-All results below come from simulating 1,000,010 decks. Each heatmap shows Player 2’s chance of winning, with Player 1’s choice down the left side and Player 2’s choice across the top. Every cell shows the win percentage with the tie percentage in parentheses, so 80(8) means Player 2 won 80% of decks and tied 8%. To find the best reply to a sequence, find that sequence’s row and look for the darkest cell in it.
+All results below come from simulating 2,000,000 decks. Each heatmap shows Player 2’s chance of winning, with Player 1’s choice down the left side and Player 2’s choice across the bottom. Every cell shows the win percentage with the tie percentage in parentheses, so 80(8) means Player 2 won 80% of decks and tied 8%. To find the best reply to a sequence, find that sequence’s row and look for the darkest cell in it.
 
 Player 2 has a winning reply to every sequence Player 1 can pick, in both versions of the game. The rule described above holds: flipping Player 1’s middle color and adding their first two colors turns BBR into RBB, which wins 93.5% of decks by tricks and 99.8% by cards. Player 1 cannot win on average, so the goal is to lose by as little as possible. The best openings are the alternating sequences  BRB and RBR , which hold Player 2 to about 80% by tricks and 92% by cards. The worst are BBB and RRR, which lose almost every deck.
 
