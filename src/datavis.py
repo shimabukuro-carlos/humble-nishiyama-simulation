@@ -18,7 +18,7 @@ SEQ_ORDER = ['BBB', 'BBR', 'BRB', 'BRR', 'RBB', 'RBR', 'RRB', 'RRR']
 def make_grid(scores: pd.DataFrame, column: str) -> pd.DataFrame:
     '''
     Reshape one column of the scores into an 8x8 grid.
-    Rows are my choice (player 2), columns are the opponent's choice (player 1).
+    Columns are my choice (player 2), rows are the opponent's choice (player 1).
     The diagonal has no games, so it comes out as NaN.
     '''
     grid = scores.pivot(index='p1_choice', columns='p2_choice', values=column)
