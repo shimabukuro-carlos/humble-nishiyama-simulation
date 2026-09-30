@@ -160,6 +160,5 @@ def process_decks(raw_data: Path) -> None:
     tricks_df.to_csv(TRICKS_DATA, index = False)
     cards_df.to_csv(CARDS_DATA, index = False)
 
-    #return tricks_df, cards_df
 
 
